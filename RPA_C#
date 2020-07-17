@@ -1,0 +1,38 @@
+// using openQA.Selenium;
+// using openQA.Selenum.IE;
+
+using System;
+
+class MainClass {
+  public static void Main (string[] args) {
+    Console.WriteLine ("Hello World");
+    //using OpenQA.Selenium;
+    //using OpenQA.Selenium.IE;
+    //using OpenQA.Selenium.Chrome;
+
+    IWebDriver dri = new InternetExplorerDriver();
+    //IWebDriver dri = new ChromeDriver();
+
+    //url 전달
+    dri.Url = "https://www.naver.com";
+
+    //Window 최대화
+    dri.Manage().Window.Maximize();
+
+    //메일 버튼 클릭
+    //dri.FindElement(By.XPath("//*[@id='NM_FAVORITE']/div[1]/ul[1]/li[1]/a[1]/i")).Click();
+
+    //검색창에 날씨 입력
+    dri.FindElement(By.XPath("//*[@id='query']")).Sendkeys("날씨");
+
+    //검색창에 값 지우기
+    dri.FindElement(By.XPath("//*[@id='query']")).Clear();
+    
+
+    // 메일 href 가지고 와서 str에 저장
+    String str = dri.FindElement(By.XPath("//*[@id='NM_FAVORITE']/div[1]/ul[1]/li[1]/a")).GetAttribute("href");
+
+
+    return dri.Url;
+  }
+}
